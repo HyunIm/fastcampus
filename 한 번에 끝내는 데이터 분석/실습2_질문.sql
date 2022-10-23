@@ -21,14 +21,31 @@ from category
 select *
 from user_info
 
+
 --2. TOP 상품의 매출 확인--------------------------------------------------------------
 
 --상품별 매출액 집계 후, 매출액 높은 순으로 정렬하기
+select itemid , sum(gmv) as gmv
+from online_order oo 
+group by 1
+;
 	
 --상품이름을 상품ID와 나란히 놓아서 한눈에 상품별 매출액을 확인할 수 있도록 하자.
-
+select item_name , sum(gmv) as gmv
+from online_order oo 
+join item i on oo.itemid = i.id 
+group by 1
+order by 2 desc
+;
 
 --추가질문: 카테고리별 매출액은 어떻게 될까?
+select c.cate1 , c.cate2 , c.cate3 , sum(gmv) as gmv 
+from online_order oo 
+join item i on oo.itemid = i.id 
+join category c on i.category_id = c.id 
+group by 1, 2, 3
+order by 4 desc 
+;
 
 --Join 테이블에 Join을 한번더
 
