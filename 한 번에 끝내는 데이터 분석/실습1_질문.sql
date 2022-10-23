@@ -150,10 +150,34 @@ having sum(gmv) >= 10000000
 
 
 --5) 매출이 높은 순으로 카테고리 정렬하기--------------------------------------------------------------
+select *
+from gmv_trend gt 
+order by category , yyyy , mm , platform_type 
+;
+
+select category , sum(gmv) as gmv
+from gmv_trend gt 
+group by 1
+order by gmv desc
+;
 
 --내림차순 Example
+select category , yyyy , sum(gmv) as gmv
+from gmv_trend gt 
+group by 1, 2
+order by 1, 2 desc
+;
 
 --[추가 예제 1] 복수의 컬럼으로 정렬
+select yyyy , mm , sum(gmv) as gmv
+from gmv_trend gt 
+group by 1, 2
+order by 3 desc
+;
 
 --[추가 예제 2] select 절에 없는 컬럼으로 정렬 가능할까? -> 불가능
-
+select yyyy 
+from gmv_trend gt 
+group by mm  
+order by yyyy 
+;
