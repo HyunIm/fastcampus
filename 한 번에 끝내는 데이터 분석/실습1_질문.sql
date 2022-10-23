@@ -88,6 +88,17 @@ and yyyy = 2021
 ;
 
 ------b) or 조건
+select *
+from gmv_trend gt 
+where gmv > '10000' or gmv < '100'
+;
+
+------c) and, or 조건 혼용
+select *
+from gmv_trend gt 
+where (gmv > '10000' or gmv < '100')
+and yyyy = 2021
+;
 
 
 --3) 카테고리별 매출 분석--------------------------------------------------------------
