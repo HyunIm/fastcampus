@@ -134,10 +134,19 @@ group by 1, 2
 
 
 --4)매출이 높은 주요 카테고리만 확인하기--------------------------------------------------------------
-
+select category , sum(gmv) as gmv 
+from gmv_trend gt 
+group by 1
+having sum(gmv) >= 10000000
+;
 
 --More Example) where절이랑 같이 쓰기
-
+select category , sum(gmv) as gmv 
+from gmv_trend gt 
+where yyyy = 2020
+group by 1
+having sum(gmv) >= 10000000
+;
 
 
 --5) 매출이 높은 순으로 카테고리 정렬하기--------------------------------------------------------------
