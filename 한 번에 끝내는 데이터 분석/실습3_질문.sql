@@ -137,7 +137,17 @@ order by 2, 3
 
 
 --3. 할인률, 판매가, 이익률 계산하기
-
+select c.cate1 ,
+	round(sum(cast(discount as numeric)) / sum(gmv) * 100) || '%' as discount_rate ,
+	sum(gmv - discount) as paid_amount ,
+	round(sum(cast(product_profit as numeric)) / sum(gmv)* 100) || '%' as product_margin ,
+	round(sum(cast(total_profit as numeric)) / sum(gmv) * 100) || '%' as total_margin
+from online_order oo 
+join item i on oo.itemid = i.id 
+join category c on i.category_id = c.id
+group by 1
+order by 3 desc
+;
 
 
 --4. 고객 관점에서의 분석 (인당 평균 구매수량 / 인당 평균 구매금액)
