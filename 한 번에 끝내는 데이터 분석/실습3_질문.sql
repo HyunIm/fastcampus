@@ -157,5 +157,24 @@ order by 3 desc
 --인당 평균 구매금액 = 총 구매금액 / 총 고객 수
 
 --인당 구매수량이 높은 상품은?
+select i.item_name 
+	, sum(unitsold) as unitsold 
+	, count(distinct userid) as user_count 
+	, round(sum(cast(unitsold as numeric)) / count(distinct userid), 2) as avg_unitsold_per_customer 
+	, round(sum(cast(gmv as numeric)) / count(distinct userid)) as avg_gmv_per_customer  
+from online_order oo 
+join item i on oo.itemid = i.id 
+group by 1
+order by 4 desc 
+;
 
 --인당 구매금액이 높은 성/연령대는? (지난 실습에서, 단순 구매금액 총합으로는 20대 여성이 높았는데...!)
+select gender, age_band,
+	sum(gmv) as gmv,
+	count(distinct oo.userid) as user_count,
+	sum(gmv) / count(distinct oo.userid) as avg_gmv_per_customer
+from online_order oo 
+join user_info ui on oo.userid = ui.userid 
+group by 1, 2
+order by 5 desc
+;
