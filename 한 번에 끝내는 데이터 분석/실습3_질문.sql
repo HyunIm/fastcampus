@@ -106,15 +106,34 @@ order by 2 desc
 --2. 날짜 관련 함수 활용하기--------------------------------------------------------------
 
 --a) 오늘을 나타내는 기본 구문
+select now() ;
+
+select current_date ;
+
+select current_timestamp ;
 
 --b) 날짜 형식에서 문자 형식으로 변환하기
+select to_char(now(), 'yyyymmdd') ;
+
+select to_char(now(), 'yyyy / mm / dd') ;
 
 --c) 날짜 더하기/빼기
+select now() + interval '1 week' ;
+
+select now() - interval '1 month' ;
 
 --d 날짜로부터 연도, 월, 주 확인하기
+select date_part('year', now()) ; 
 
---d) 최근 1년 동안의 매출액 확인하기
+select date_part('day', now()) ; 
 
+--e) 최근 1년 동안의 매출액 확인하기
+select *
+from gmv_trend gt 
+where cast(yyyy as varchar) || cast(mm as varchar)
+	>= cast(date_part('year', now() - interval '1 year') as varchar) || cast(date_part('month', now() - interval '1 year') as varchar)
+order by 2, 3
+;
 
 
 --3. 할인률, 판매가, 이익률 계산하기
