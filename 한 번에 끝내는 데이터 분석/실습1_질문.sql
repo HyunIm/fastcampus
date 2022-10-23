@@ -104,13 +104,33 @@ and yyyy = 2021
 --3) 카테고리별 매출 분석--------------------------------------------------------------
 
 --More Example) 카테고리별, 연도별 매출
+select category as cate , yyyy , sum(gmv) total_gmv
+from gmv_trend gt 
+group by category , yyyy 
+;
+
+select category as cate , yyyy , sum(gmv) total_gmv
+from gmv_trend gt 
+group by 1, 2
+;
 
 --More Example) 전체 총합
+select sum(gmv) as gmv
+from gmv_trend gt 
+;
 
 --More Example) 집계함수의 종류
+sum
+min
+max
+avg
 
 --group by + where 예시
-
+select category , yyyy , sum(gmv) as gmv
+from gmv_trend gt 
+where category = '컴퓨터 및 주변기기'
+group by 1, 2
+;
 
 
 --4)매출이 높은 주요 카테고리만 확인하기--------------------------------------------------------------
