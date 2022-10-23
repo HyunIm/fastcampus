@@ -54,6 +54,24 @@ order by 4 desc
 
 
 --3. 카테고리별 주요 상품의 매출 확인--------------------------------------------------------------
+select ui.gender , ui.age_band , sum(gmv) as gmv 
+from online_order oo 
+join user_info ui on oo.userid = ui.userid 
+group by 1, 2
+order by 1, 2
+;
 
+select ui.userid 
+from online_order oo 
+join user_info ui on oo.userid = ui.userid 
+;
 
 --추가질문: 남성이 구매하는 아이템은 어떤 것이 있을까?
+select item_name, sum(gmv) as gmv
+from online_order oo 
+join item i on oo.itemid = i.id 
+join user_info ui on oo.userid = ui.userid 
+where gender = 'M'
+group by 1
+order by 2 desc 
+;
