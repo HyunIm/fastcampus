@@ -28,12 +28,66 @@ from gmv_trend gt
 
 --2-1) 조건이 하나일 때 More Example
 ------a) 숫자열 (between, 대소비교)
+select *
+from gmv_trend gt
+where yyyy = 2021
+;
+
+select *
+from gmv_trend gt
+where yyyy >= 2019
+;
+
+select *
+from gmv_trend gt
+where yyyy between 2018 and 2020
+;
+
+select *
+from gmv_trend gt
+where yyyy != 2021
+;
+
+select *
+from gmv_trend gt
+where yyyy <> 2021
+;
 
 ------b) 문자열 (=, !=, like, in, not in)
+select *
+from gmv_trend gt 
+where category = '컴퓨터 및 주변기기'
+;
+
+select *
+from gmv_trend gt 
+where category != '컴퓨터 및 주변기기'
+;
+
+select *
+from gmv_trend gt 
+where category in ('컴퓨터 및 주변기기', '생활용품')
+;
+
+select *
+from gmv_trend gt 
+where category not in ('컴퓨터 및 주변기기', '생활용품')
+;
+
+select *
+from gmv_trend gt 
+where category like '%패션%'
+;
 
 --2-2) 조건이 여러개일 때--------------------------------------------------------------
 ------a) and 조건
+select *
+from gmv_trend gt 
+where category = '컴퓨터 및 주변기기'
+and yyyy = 2021
+;
 
+------b) or 조건
 
 
 --3) 카테고리별 매출 분석--------------------------------------------------------------
